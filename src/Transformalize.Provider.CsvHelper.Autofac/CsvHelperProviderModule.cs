@@ -9,6 +9,11 @@ using Transformalize.Providers.File;
 
 namespace Transformalize.Providers.CsvHelper.Autofac {
    public class CsvHelperProviderModule : Module {
+      private readonly Stream _stream;
+
+      public CsvHelperProviderModule(Stream stream = null) {
+         _stream = stream;
+      }
 
       protected override void Load(ContainerBuilder builder) {
 
@@ -77,9 +82,8 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
                            // return new FileStreamWriter(output);
                            return new NullWriter(output, true);
                         } else {
-                           if (output.Connection.Stream && builder.Properties.ContainsKey("Stream")) {
-                              var stream = (Stream) builder.Properties["Stream"];
-                              return new CsvHelperStreamWriter(output, stream);
+                           if (output.Connection.Stream &&  _stream != null) {
+                              return new CsvHelperStreamWriter(output, _stream);
                            } else {
                               var fileInfo = new FileInfo(Path.Combine(output.Connection.Folder, output.Connection.File ?? output.Entity.OutputTableName(output.Process.Name)));
                               var stream = System.IO.File.OpenWrite(fileInfo.FullName);

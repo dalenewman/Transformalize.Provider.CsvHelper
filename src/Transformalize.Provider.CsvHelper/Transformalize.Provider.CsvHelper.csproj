@@ -4,7 +4,7 @@
       <TargetFramework>netstandard2.0</TargetFramework>
       <RootNamespace>Transformalize.Providers.CsvHelper</RootNamespace>
       <PackageOutputPath>c:\temp\modules</PackageOutputPath>
-      <Version>0.6.29-beta</Version>
+      <Version>0.6.31-beta</Version>
       <Authors>Dale Newman</Authors>
       <Company>Transformalize</Company>
       <Description>A Transformalize provider using CsvHelper for reading and writing files.</Description>
@@ -19,7 +19,6 @@
 
    <ItemGroup>
       <PackageReference Include="CsvHelper" Version="15.0.5" />
-      <PackageReference Include="Transformalize" Version="0.6.29-beta" />
       <PackageReference Include="Transformalize.Provider.File" Version="0.6.30-beta" />
    </ItemGroup>
 

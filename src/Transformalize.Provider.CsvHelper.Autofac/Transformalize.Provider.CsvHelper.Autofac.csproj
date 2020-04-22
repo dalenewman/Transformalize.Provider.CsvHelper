@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Transformalize.Providers.CsvHelper.Autofac</RootNamespace>
+   <PropertyGroup>
+      <TargetFramework>netstandard2.0</TargetFramework>
+      <RootNamespace>Transformalize.Providers.CsvHelper.Autofac</RootNamespace>
       <PackageOutputPath>c:\temp\modules</PackageOutputPath>
-      <Version>0.6.29-beta</Version>
+      <Version>0.6.31-beta</Version>
       <Authors>Dale Newman</Authors>
       <Company>Transformalize</Company>
       <Description>An Autofac module for Transformalize.Providers.CsvHelper.</Description>
@@ -15,21 +15,21 @@
       <PackageTags>etl,csvhelper,transformalize,csv</PackageTags>
       <NeutralLanguage>en-US</NeutralLanguage>
       <PackageLicenseFile>LICENSE</PackageLicenseFile>
-  </PropertyGroup>
+   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Transformalize.Container.Autofac" Version="0.6.30-beta" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj" />
-  </ItemGroup>
-   
    <ItemGroup>
-     <None Include="..\..\LICENSE">
-       <Pack>True</Pack>
-       <PackagePath></PackagePath>
-     </None>
-   </ItemGroup>   
+      <PackageReference Include="Transformalize.Container.Autofac" Version="0.6.30-beta" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <ProjectReference Include="..\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <None Include="..\..\LICENSE">
+         <Pack>True</Pack>
+         <PackagePath></PackagePath>
+      </None>
+   </ItemGroup>
 
 </Project>
