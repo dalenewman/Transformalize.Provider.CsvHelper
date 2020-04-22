@@ -4,10 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Transformalize.Providers.CsvHelper.Autofac</RootNamespace>
       <PackageOutputPath>c:\temp\modules</PackageOutputPath>
-      <Version>0.6.29</Version>
+      <Version>0.6.29-beta</Version>
       <Authors>Dale Newman</Authors>
       <Company>Transformalize</Company>
-      <Description>This is an Autofac module for Transformalize.Providers.CsvHelper.</Description>
+      <Description>An Autofac module for Transformalize.Providers.CsvHelper.</Description>
       <Copyright>Copyright © 2020 Dale Newman</Copyright>
       <PackageProjectUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper</PackageProjectUrl>
       <RepositoryUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper.git</RepositoryUrl>
