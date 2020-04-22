@@ -3,11 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformalize.Provider.CsvHelper", "src\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj", "{8F34827C-387B-44D7-B463-E95EE7D67737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transformalize.Provider.CsvHelper", "src\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj", "{8F34827C-387B-44D7-B463-E95EE7D67737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Integration.Core", "test\Test.Integration.Core\Test.Integration.Core.csproj", "{27396154-9EB6-45EE-A16F-F116B79D35C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.Core", "test\Test.Integration.Core\Test.Integration.Core.csproj", "{27396154-9EB6-45EE-A16F-F116B79D35C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformalize.Provider.CsvHelper.Autofac", "src\Transformalize.Provider.CsvHelper.Autofac\Transformalize.Provider.CsvHelper.Autofac.csproj", "{2E89C935-F416-4FE9-B93B-50A61B4E974B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transformalize.Provider.CsvHelper.Autofac", "src\Transformalize.Provider.CsvHelper.Autofac\Transformalize.Provider.CsvHelper.Autofac.csproj", "{2E89C935-F416-4FE9-B93B-50A61B4E974B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E55E470-3F2B-4992-AA36-5988C116D7D9}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

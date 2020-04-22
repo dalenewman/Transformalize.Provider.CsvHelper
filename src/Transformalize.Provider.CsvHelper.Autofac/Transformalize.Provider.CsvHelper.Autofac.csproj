@@ -3,7 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Transformalize.Providers.CsvHelper.Autofac</RootNamespace>
-    <Version>0.6.29</Version>
+      <PackageOutputPath>c:\temp\modules</PackageOutputPath>
+      <Version>0.6.29</Version>
+      <Authors>Dale Newman</Authors>
+      <Company>Transformalize</Company>
+      <Description>This is an Autofac module for Transformalize.Providers.CsvHelper.</Description>
+      <Copyright>Copyright © 2020 Dale Newman</Copyright>
+      <PackageProjectUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper.git</RepositoryUrl>
+      <RepositoryType>git</RepositoryType>
+      <PackageTags>etl,csvhelper,transformalize,csv</PackageTags>
+      <NeutralLanguage>en-US</NeutralLanguage>
+      <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,5 +24,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj" />
   </ItemGroup>
+   
+   <ItemGroup>
+     <None Include="..\..\LICENSE">
+       <Pack>True</Pack>
+       <PackagePath></PackagePath>
+     </None>
+   </ItemGroup>   
 
 </Project>

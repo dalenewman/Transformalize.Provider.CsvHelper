@@ -5,6 +5,7 @@ using Transformalize.Configuration;
 using Transformalize.Context;
 using Transformalize.Contracts;
 using Transformalize.Nulls;
+using Transformalize.Providers.File;
 
 namespace Transformalize.Providers.CsvHelper.Autofac {
    public class CsvHelperProviderModule : Module {
@@ -81,7 +82,7 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
                               return new CsvHelperStreamWriter(output, stream);
                            } else {
                               var fileInfo = new FileInfo(Path.Combine(output.Connection.Folder, output.Connection.File ?? output.Entity.OutputTableName(output.Process.Name)));
-                              var stream = File.OpenWrite(fileInfo.FullName);
+                              var stream = System.IO.File.OpenWrite(fileInfo.FullName);
                               return new CsvHelperStreamWriter(output, stream);
                            }
                            

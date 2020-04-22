@@ -1,13 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Transformalize.Providers.CsvHelper</RootNamespace>
-  </PropertyGroup>
+   <PropertyGroup>
+      <TargetFramework>netstandard2.0</TargetFramework>
+      <RootNamespace>Transformalize.Providers.CsvHelper</RootNamespace>
+      <PackageOutputPath>c:\temp\modules</PackageOutputPath>
+      <Version>0.6.29</Version>
+      <Authors>Dale Newman</Authors>
+      <Company>Transformalize</Company>
+      <Description>This Transformalize provider uses CsvHelper for reading and writing files.</Description>
+      <Copyright>Copyright © 2020 Dale Newman</Copyright>
+      <PackageProjectUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper.git</RepositoryUrl>
+      <RepositoryType>git</RepositoryType>
+      <PackageTags>etl,csvhelper,transformalize,csv</PackageTags>
+      <NeutralLanguage>en-US</NeutralLanguage>
+      <PackageLicenseFile>LICENSE</PackageLicenseFile>
+   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="15.0.5" />
-    <PackageReference Include="Transformalize" Version="0.6.29-beta" />
-  </ItemGroup>
+   <ItemGroup>
+      <PackageReference Include="CsvHelper" Version="15.0.5" />
+      <PackageReference Include="Transformalize" Version="0.6.29-beta" />
+      <PackageReference Include="Transformalize.Provider.File" Version="0.6.30-beta" />
+   </ItemGroup>
+
+   <ItemGroup>
+     <None Include="..\..\LICENSE">
+       <Pack>True</Pack>
+       <PackagePath></PackagePath>
+     </None>
+   </ItemGroup>
+
 
 </Project>
