@@ -11,8 +11,8 @@
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
-    <PackageReference Include="Transformalize.Container.Autofac" Version="0.6.30-beta" />
-    <PackageReference Include="Transformalize.Provider.Bogus.Autofac" Version="0.6.28-beta" />
+    <PackageReference Include="Transformalize.Container.Autofac" Version="0.7.6-beta" />
+    <PackageReference Include="Transformalize.Provider.Bogus.Autofac" Version="0.7.6-beta" />
     <PackageReference Include="Transformalize.Provider.Console.Autofac" Version="0.6.28-beta" />
   </ItemGroup>
 

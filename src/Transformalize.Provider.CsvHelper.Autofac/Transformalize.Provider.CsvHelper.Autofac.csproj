@@ -4,9 +4,12 @@
       <TargetFramework>netstandard2.0</TargetFramework>
       <RootNamespace>Transformalize.Providers.CsvHelper.Autofac</RootNamespace>
       <PackageOutputPath>c:\temp\modules</PackageOutputPath>
-      <Version>0.6.31-beta</Version>
+      <Title>Transformalize File Provider using CsvHelper Autofac Module</Title>
+      <Version>0.7.6-beta</Version>
       <Authors>Dale Newman</Authors>
       <Company>Transformalize</Company>
+      <IncludeSymbols>true</IncludeSymbols>
+      <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
       <Description>An Autofac module for Transformalize.Providers.CsvHelper.</Description>
       <Copyright>Copyright © 2020 Dale Newman</Copyright>
       <PackageProjectUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper</PackageProjectUrl>
@@ -14,22 +17,14 @@
       <RepositoryType>git</RepositoryType>
       <PackageTags>etl,csvhelper,transformalize,csv</PackageTags>
       <NeutralLanguage>en-US</NeutralLanguage>
-      <PackageLicenseFile>LICENSE</PackageLicenseFile>
    </PropertyGroup>
 
    <ItemGroup>
-      <PackageReference Include="Transformalize.Container.Autofac" Version="0.6.30-beta" />
+      <PackageReference Include="Transformalize.Container.Autofac" Version="0.7.6-beta" />
    </ItemGroup>
 
    <ItemGroup>
       <ProjectReference Include="..\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj" />
-   </ItemGroup>
-
-   <ItemGroup>
-      <None Include="..\..\LICENSE">
-         <Pack>True</Pack>
-         <PackagePath></PackagePath>
-      </None>
    </ItemGroup>
 
 </Project>
