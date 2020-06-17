@@ -34,7 +34,7 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
          }
 
          // entity input
-         foreach (var entity in p.Entities.Where(e => p.Connections.First(c => c.Name == e.Connection).Provider == "file")) {
+         foreach (var entity in p.Entities.Where(e => p.Connections.First(c => c.Name == e.Input).Provider == "file")) {
 
             // input version detector
             builder.RegisterType<NullInputProvider>().Named<IInputProvider>(entity.Key);
@@ -55,7 +55,7 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
          }
 
          // Entity Output
-         if (p.Output().Provider == "file") {
+         if (p.GetOutputConnection().Provider == "file") {
 
             // PROCESS OUTPUT CONTROLLER
             builder.Register<IOutputController>(ctx => new NullOutputController()).As<IOutputController>();
