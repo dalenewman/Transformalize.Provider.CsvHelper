@@ -14,7 +14,6 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
       public CsvHelperProviderModule(Stream stream = null) {
          _stream = stream;
       }
-
       protected override void Load(ContainerBuilder builder) {
 
          if (!builder.Properties.ContainsKey("Process")) {
@@ -44,12 +43,11 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
                var input = ctx.ResolveNamed<InputContext>(entity.Key);
                var rowFactory = ctx.ResolveNamed<IRowFactory>(entity.Key, new NamedParameter("capacity", input.RowCapacity));
 
+               if (input.Connection.Delimiter == string.Empty && input.Entity.Fields.Count(f => f.Input) == 1) {
+                  return new FileReader(input, rowFactory);
+               }
+               return new CsvHelperReader(input, rowFactory);
 
-               //if (input.Connection.Delimiter == string.Empty && input.Entity.Fields.Count(f => f.Input) == 1) {
-               //   return new FileReader(input, rowFactory);
-               //}
-               //return new DelimitedFileReader(input, rowFactory);
-               return new NullReader(input, true);
             }).Named<IRead>(entity.Key);
 
          }

@@ -10,7 +10,6 @@ using Transformalize.Contracts;
 namespace Transformalize.Providers.CsvHelper {
 
    /// <summary>
-   /// just a test to see if i can get away with it
    /// </summary>
    public class CsvHelperStreamWriter : IWrite {
 
@@ -32,6 +31,7 @@ namespace Transformalize.Providers.CsvHelper {
             _config.Quote = context.Connection.TextQualifier[0];
          }
          _config.Encoding = Encoding.GetEncoding(_context.Connection.Encoding);
+         _config.TrimOptions = TrimOptions.None;
       }
 
       public void Write(IEnumerable<IRow> rows) {
@@ -94,10 +94,11 @@ namespace Transformalize.Providers.CsvHelper {
                         break;
                   }
                   csv.WriteField(strVal);
+                  
                }
-               csv.NextRecordAsync();
-
+               
                _context.Entity.Inserts++;
+               csv.NextRecordAsync();
             }
 
          } finally {

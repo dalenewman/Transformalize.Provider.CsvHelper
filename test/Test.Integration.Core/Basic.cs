@@ -9,8 +9,21 @@ using Transformalize.Providers.Console;
 using Transformalize.Providers.CsvHelper.Autofac;
 
 namespace Test.Integration.Core {
+
    [TestClass]
-   public class UnitTest1 {
+   public class Basic {
+
+
+      /// <summary>
+      /// Not sure what's happening but I have some odd output:
+      /// 
+      /// 40,Fannie,Smith,5,459
+      /// 41,Gerard,Rogahn,2,33742,Dana,Robel,4,206  -- double line
+      /// 43,Alicia,Kunde,2,400
+      /// 44,Christine,Hansen,5,356
+      ///                                            -- empty line
+      /// 45,Marianne,Walker,3,397
+      /// </summary>
       [TestMethod]
       public void Write() {
 
@@ -79,6 +92,38 @@ namespace Test.Integration.Core {
                controller.Execute();
             }
          }
+      }
+
+      [TestMethod]
+      public void Read() {
+
+         const string xml = @"<add name='file' mode='init' read-only='true'>
+  <connections>
+    <add name='input' provider='file' delimiter=',' file='c:\temp\bogus.csv' start='2' />
+  </connections>
+  <entities>
+    <add name='Contact' page='1' size='20'>
+      <fields>
+        <add name='Identity' type='int' />
+        <add name='FirstName' />
+        <add name='LastName' />
+        <add name='Stars' type='byte' />
+        <add name='Reviewers' type='int' />
+      </fields>
+    </add>
+  </entities>
+</add>";
+
+         var logger = new ConsoleLogger(LogLevel.Debug);
+         using (var outer = new ConfigurationContainer().CreateScope(xml, logger)) {
+            var process = outer.Resolve<Process>();
+            using (var inner = new Container(new BogusModule(), new CsvHelperProviderModule()).CreateScope(process, logger)) {
+               var controller = inner.Resolve<IProcessController>();
+               controller.Execute();
+               Assert.AreEqual((uint)20, process.Entities.First().Inserts);
+            }
+         }
+
       }
 
    }
