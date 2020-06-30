@@ -13,9 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{9BD862EE-0EE4-4D57-B5CC-B0A8048CAB25}"
+	ProjectSection(SolutionItems) = preProject
 		nuget\myget.bat = nuget\myget.bat
 		nuget\nuget.bat = nuget\nuget.bat
-		README.md = README.md
+		nuget\Transformalize.Provider.CsvHelper.Autofac.nuspec = nuget\Transformalize.Provider.CsvHelper.Autofac.nuspec
+		nuget\Transformalize.Provider.CsvHelper.nuspec = nuget\Transformalize.Provider.CsvHelper.nuspec
 	EndProjectSection
 EndProject
 Global
@@ -39,6 +45,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9BD862EE-0EE4-4D57-B5CC-B0A8048CAB25} = {5E55E470-3F2B-4992-AA36-5988C116D7D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6719B49C-E21E-4F81-A5A2-0C42786BCD02}

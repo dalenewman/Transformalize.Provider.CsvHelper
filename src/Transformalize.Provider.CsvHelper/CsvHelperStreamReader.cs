@@ -37,6 +37,8 @@ namespace Transformalize.Providers.CsvHelper {
 
          _context.Debug(() => "Reading file stream.");
 
+         var ignoreFirstLines = _context.Connection.Start > 1 ? _context.Connection.Start - 1 : _context.Connection.Start;
+
          var start = _context.Connection.Start;
          var end = 0;
          if (_context.Entity.IsPageRequest()) {
@@ -44,7 +46,7 @@ namespace Transformalize.Providers.CsvHelper {
             end = start + _context.Entity.Size;
          }
 
-         var current = 1;
+         var current = _context.Connection.Start;
 
          using (var csv = new CsvReader(_streamReader, CultureInfo.InvariantCulture)) {
 
@@ -58,6 +60,10 @@ namespace Transformalize.Providers.CsvHelper {
             }
 
             while (csv.Read()) {
+
+               if(csv.Context.RawRow <= ignoreFirstLines) {
+                  continue;
+               }
 
                if (end == 0 || current.Between(start, end)) {
                   var row = _rowFactory.Create();

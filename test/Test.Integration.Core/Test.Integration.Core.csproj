@@ -16,7 +16,7 @@
     </PackageReference>
     <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.15-beta" />
     <PackageReference Include="Transformalize.Provider.Bogus.Autofac" Version="0.8.1-beta" />
-    <PackageReference Include="Transformalize.Provider.Console.Autofac" Version="0.8.1-beta" />
+    <PackageReference Include="Transformalize.Provider.Console.Autofac" Version="0.8.2-beta" />
   </ItemGroup>
 
   <ItemGroup>

@@ -99,7 +99,7 @@ namespace Test.Integration.Core {
 
          const string xml = @"<add name='file' mode='init' read-only='true'>
   <connections>
-    <add name='input' provider='file' delimiter=',' file='c:\temp\bogus.csv' start='2' />
+    <add name='input' provider='file' delimiter=',' file='c:\temp\bogus.csv' />
   </connections>
   <entities>
     <add name='Contact' page='1' size='20'>
