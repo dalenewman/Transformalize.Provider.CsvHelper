@@ -4,6 +4,7 @@ using System.Linq;
 using Transformalize.Configuration;
 using Transformalize.Context;
 using Transformalize.Contracts;
+using Transformalize.Impl;
 using Transformalize.Nulls;
 using Transformalize.Providers.File;
 
@@ -27,8 +28,29 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
 
             // Schema Reader
             builder.Register<ISchemaReader>(ctx => {
-               // todo
-               return new NullSchemaReader();
+
+               var context = ctx.ResolveNamed<IConnectionContext>(connection.Key);
+               var cfg = new FileInspection(context, FileUtility.Find(connection.File), connection.Sample).Create();
+               var process = new Process(cfg);
+
+               foreach (var warning in process.Warnings()) {
+                  context.Warn(warning);
+               }
+
+               if (process.Errors().Any()) {
+                  foreach (var error in process.Errors()) {
+                     context.Error(error);
+                  }
+                  return new NullSchemaReader();
+               }
+
+               var input = new InputContext(new PipelineContext(ctx.Resolve<IPipelineLogger>(), process, process.Entities.First()));
+               var rowFactory = new RowFactory(input.RowCapacity, input.Entity.IsMaster, false);
+               var reader = new CsvHelperReader(input, rowFactory);
+
+               return new FileSchemaReader(process, input, reader);
+
+
             }).Named<ISchemaReader>(connection.Key);
          }
 
