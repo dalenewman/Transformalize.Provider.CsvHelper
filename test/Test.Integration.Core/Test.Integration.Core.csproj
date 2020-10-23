@@ -14,9 +14,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.15-beta" />
-    <PackageReference Include="Transformalize.Provider.Bogus.Autofac" Version="0.8.1-beta" />
-    <PackageReference Include="Transformalize.Provider.Console.Autofac" Version="0.8.2-beta" />
+    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.29-beta" />
+    <PackageReference Include="Transformalize.Provider.Bogus.Autofac" Version="0.8.29-beta" />
+    <PackageReference Include="Transformalize.Provider.Console.Autofac" Version="0.8.29-beta" />
   </ItemGroup>
 
   <ItemGroup>

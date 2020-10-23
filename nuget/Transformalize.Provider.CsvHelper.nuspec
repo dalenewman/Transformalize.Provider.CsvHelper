@@ -2,7 +2,7 @@
 <package>
    <metadata>
       <id>Transformalize.Provider.CsvHelper</id>
-      <version>0.8.18-beta</version>
+      <version>0.8.29-beta</version>
       <title>Transformalize Provider using CsvHelper</title>
       <authors>Dale Newman</authors>
       <owners>Dale Newman</owners>
@@ -10,14 +10,14 @@
       <license type="expression">Apache-2.0</license>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <description>Transformalize Provider using CsvHelper</description>
-      <releaseNotes>added schema reader</releaseNotes>
+      <releaseNotes></releaseNotes>
       <copyright>Copyright 2018-2020</copyright>
       <tags>etl</tags>
       <dependencies>
          <group targetFramework="netstandard2.0">
-            <dependency id="Transformalize" version="0.8.14-beta" />
+            <dependency id="Transformalize" version="0.8.29-beta" />
             <dependency id="CsvHelper" version="15.0.5" />
-            <dependency id="Transformalize.Provider.File" version="0.8.8-beta" />
+            <dependency id="Transformalize.Provider.File" version="0.8.29-beta" />
          </group>
       </dependencies>
    </metadata>

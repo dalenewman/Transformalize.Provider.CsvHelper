@@ -21,7 +21,7 @@
 
    <ItemGroup>
       <PackageReference Include="CsvHelper" Version="15.0.5" />
-      <PackageReference Include="Transformalize.Provider.File" Version="0.8.8-beta" />
+      <PackageReference Include="Transformalize.Provider.File" Version="0.8.29-beta" />
    </ItemGroup>
 
 </Project>
