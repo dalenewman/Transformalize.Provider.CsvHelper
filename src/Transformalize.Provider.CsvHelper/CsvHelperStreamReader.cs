@@ -73,7 +73,7 @@ namespace Transformalize.Providers.CsvHelper {
                      row[field] = data;
                   }
                   yield return row;
-                  ++_context.Entity.Inserts;
+                  ++_context.Entity.Hits;
                }
                ++current;
                if (current == end) {
