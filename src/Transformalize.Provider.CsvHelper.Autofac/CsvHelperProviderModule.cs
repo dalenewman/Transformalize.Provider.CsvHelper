@@ -11,17 +11,26 @@ using Transformalize.Providers.File;
 namespace Transformalize.Providers.CsvHelper.Autofac {
    public class CsvHelperProviderModule : Module {
       private readonly Stream _stream;
+      private readonly Process _process;
+
+      public CsvHelperProviderModule() {
+      }
 
       public CsvHelperProviderModule(Stream stream = null) {
          _stream = stream;
       }
+
+      public CsvHelperProviderModule(Process process, Stream stream = null) {
+         _process = process;
+         _stream = stream;
+      }
       protected override void Load(ContainerBuilder builder) {
 
-         if (!builder.Properties.ContainsKey("Process")) {
+         if (_process == null && !builder.Properties.ContainsKey("Process")) {
             return;
          }
 
-         var p = (Process)builder.Properties["Process"];
+         var p = _process ?? (Process)builder.Properties["Process"];
 
          // connections
          foreach (var connection in p.Connections.Where(c => c.Provider == "file")) {

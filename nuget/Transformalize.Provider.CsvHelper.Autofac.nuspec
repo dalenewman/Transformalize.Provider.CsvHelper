@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Provider.CsvHelper.Autofac</id>
-    <version>0.8.30-beta</version>
+    <version>0.8.31-beta</version>
     <title>Transformalize Provider using CsvHelper Autofac Module</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>
@@ -17,7 +17,7 @@
     <dependencies>
       <group targetFramework="netstandard2.0">
         <dependency id="Transformalize.Container.Autofac" version="0.8.29-beta" />
-        <dependency id="Transformalize.Provider.CsvHelper" version="0.8.30-beta" />
+        <dependency id="Transformalize.Provider.CsvHelper" version="0.8.31-beta" />
       </group>
     </dependencies>
   </metadata>

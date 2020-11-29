@@ -120,7 +120,7 @@ namespace Test.Integration.Core {
             using (var inner = new Container(new BogusModule(), new CsvHelperProviderModule()).CreateScope(process, logger)) {
                var controller = inner.Resolve<IProcessController>();
                controller.Execute();
-               Assert.AreEqual((uint)20, process.Entities.First().Inserts);
+               Assert.AreEqual(20, process.Entities.First().Hits);
             }
          }
 
