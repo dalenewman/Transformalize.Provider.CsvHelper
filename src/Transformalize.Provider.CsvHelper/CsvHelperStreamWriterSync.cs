@@ -6,12 +6,12 @@ using Transformalize.Contracts;
 
 namespace Transformalize.Providers.CsvHelper {
 
-   public class CsvHelperStreamWriter : CsvHelperWriterBase, IWrite {
+   public class CsvHelperStreamWriterSync : CsvHelperWriterBase, IWrite {
 
       private readonly OutputContext _context;
       private readonly Stream _stream;
 
-      public CsvHelperStreamWriter(OutputContext context, Stream stream) : base(context) {
+      public CsvHelperStreamWriterSync(OutputContext context, Stream stream) : base(context) {
          _context = context;
          _stream = stream;
       }
@@ -24,7 +24,7 @@ namespace Transformalize.Providers.CsvHelper {
          try {
             if (_context.Connection.Header == Constants.DefaultSetting) {
                WriteHeader(csv);
-               csv.NextRecordAsync();
+               csv.NextRecord();
             }
 
             csv.Context.HasHeaderBeenWritten = true;
@@ -32,13 +32,13 @@ namespace Transformalize.Providers.CsvHelper {
             foreach (var row in rows) {
                WriteRow(csv, row);
                _context.Entity.Inserts++;
-               csv.NextRecordAsync();
+               csv.NextRecord();
             }
 
          } finally {
             if (csv != null) {
-               csv.FlushAsync();
-               csv.DisposeAsync();
+               csv.Flush();
+               csv.Dispose();
             }
          }
       }

@@ -108,15 +108,15 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
                   switch (output.Connection.Provider) {
                      case "file":
                         if (output.Connection.Delimiter == string.Empty) {
-                           // return new FileStreamWriter(output);
+                           output.Error("A delimiter is required for a file output.");
                            return new NullWriter(output, true);
                         } else {
                            if (output.Connection.Stream &&  _stream != null) {
-                              return new CsvHelperStreamWriter(output, _stream);
+                              return output.Connection.Synchronous ? (IWrite) new CsvHelperStreamWriterSync(output, _stream) : new CsvHelperStreamWriter(output, _stream);
                            } else {
                               var fileInfo = new FileInfo(Path.Combine(output.Connection.Folder, output.Connection.File ?? output.Entity.OutputTableName(output.Process.Name)));
                               var stream = System.IO.File.OpenWrite(fileInfo.FullName);
-                              return new CsvHelperStreamWriter(output, stream);
+                              return output.Connection.Synchronous ? (IWrite)new CsvHelperStreamWriterSync(output, stream) : new CsvHelperStreamWriter(output, stream);
                            }
                            
                         }

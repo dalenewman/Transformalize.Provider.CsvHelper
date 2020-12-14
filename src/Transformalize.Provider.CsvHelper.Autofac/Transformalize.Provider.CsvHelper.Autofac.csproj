@@ -4,7 +4,7 @@
     <RootNamespace>Transformalize.Providers.CsvHelper.Autofac</RootNamespace>
     <PackageOutputPath>c:\temp\modules</PackageOutputPath>
     <Title>Transformalize File Provider using CsvHelper Autofac Module</Title>
-    <Version>0.8.31-beta</Version>
+    <Version>0.8.32-beta</Version>
     <Authors>Dale Newman</Authors>
     <Company>Transformalize</Company>
     <IncludeSymbols>true</IncludeSymbols>
@@ -18,7 +18,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.29-beta" />
+    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.30-beta" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj" />

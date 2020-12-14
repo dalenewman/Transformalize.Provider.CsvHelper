@@ -33,7 +33,7 @@ namespace Test.Integration.Core {
   </parameters>
   <connections>
     <add name='input' provider='bogus' seed='1' />
-    <add name='output' provider='file' delimiter=',' file='c:\temp\bogus.csv' />
+    <add name='output' provider='file' delimiter=',' file='c:\temp\bogus.csv' synchronous='true' />
   </connections>
   <entities>
     <add name='Contact' size='@[Size]'>
