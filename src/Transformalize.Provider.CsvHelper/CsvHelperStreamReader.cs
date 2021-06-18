@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -48,20 +49,22 @@ namespace Transformalize.Providers.CsvHelper {
 
          var current = _context.Connection.Start;
 
-         using (var csv = new CsvReader(_streamReader, CultureInfo.InvariantCulture)) {
+         var configuration = new CsvConfiguration(CultureInfo.InvariantCulture) {
+            IgnoreBlankLines = true,
+            Delimiter = string.IsNullOrEmpty(_context.Connection.Delimiter) ? "," : _context.Connection.Delimiter,
+            Encoding = Encoding.GetEncoding(_context.Connection.Encoding)
+         };
 
-            csv.Configuration.IgnoreBlankLines = true;
-            csv.Configuration.Delimiter = string.IsNullOrEmpty(_context.Connection.Delimiter) ? "," : _context.Connection.Delimiter;
-            csv.Configuration.Encoding = Encoding.GetEncoding(_context.Connection.Encoding);
+         if (_context.Connection.TextQualifier != string.Empty) {
+            configuration.Escape = _context.Connection.TextQualifier[0];
+            configuration.Quote = _context.Connection.TextQualifier[0];
+         }
 
-            if (_context.Connection.TextQualifier != string.Empty) {
-               csv.Configuration.Escape = _context.Connection.TextQualifier[0];
-               csv.Configuration.Quote = _context.Connection.TextQualifier[0];
-            }
+         using (var csv = new CsvReader(_streamReader, configuration)) {
 
             while (csv.Read()) {
 
-               if(csv.Context.RawRow <= ignoreFirstLines) {
+               if(csv.Parser.RawRow <= ignoreFirstLines) {
                   continue;
                }
 

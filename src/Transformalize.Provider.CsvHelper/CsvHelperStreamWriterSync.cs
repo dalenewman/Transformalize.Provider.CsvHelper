@@ -27,8 +27,6 @@ namespace Transformalize.Providers.CsvHelper {
                csv.NextRecord();
             }
 
-            csv.Context.HasHeaderBeenWritten = true;
-
             foreach (var row in rows) {
                WriteRow(csv, row);
                _context.Entity.Inserts++;
