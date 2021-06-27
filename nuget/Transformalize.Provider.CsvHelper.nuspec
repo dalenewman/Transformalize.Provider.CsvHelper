@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Provider.CsvHelper</id>
-    <version>0.8.34-beta</version>
+    <version>0.8.36-beta</version>
     <title>Transformalize Provider using CsvHelper</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>

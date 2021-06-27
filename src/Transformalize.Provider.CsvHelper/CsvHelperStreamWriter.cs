@@ -10,18 +10,16 @@ namespace Transformalize.Providers.CsvHelper {
    public class CsvHelperStreamWriter : CsvHelperWriterBase, IWrite, IDisposable {
 
       private readonly OutputContext _context;
-      private readonly Stream _stream;
       private readonly CsvWriter _csv;
+      private readonly StreamWriter _streamWriter;
 
-      public CsvHelperStreamWriter(OutputContext context, Stream stream) : base(context) {
+      public CsvHelperStreamWriter(OutputContext context, StreamWriter streamWriter) : base(context) {
          _context = context;
-         _stream = stream;
-         _csv = new CsvWriter(new StreamWriter(_stream), Config);
+         _streamWriter = streamWriter;
+         _csv = new CsvWriter(_streamWriter, Config);
       }
 
       public void Write(IEnumerable<IRow> rows) {
-
-
 
          if (_context.Connection.Header == Constants.DefaultSetting) {
             WriteHeader(_csv);
@@ -36,6 +34,7 @@ namespace Transformalize.Providers.CsvHelper {
          }
 
          _csv.FlushAsync().ConfigureAwait(false);
+         
       }
 
       public void Dispose() {

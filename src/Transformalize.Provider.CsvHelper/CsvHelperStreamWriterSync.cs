@@ -9,17 +9,16 @@ namespace Transformalize.Providers.CsvHelper {
    public class CsvHelperStreamWriterSync : CsvHelperWriterBase, IWrite {
 
       private readonly OutputContext _context;
-      private readonly Stream _stream;
+      private readonly StreamWriter _streamWriter;
 
-      public CsvHelperStreamWriterSync(OutputContext context, Stream stream) : base(context) {
+      public CsvHelperStreamWriterSync(OutputContext context, StreamWriter streamWriter) : base(context) {
          _context = context;
-         _stream = stream;
+         _streamWriter = streamWriter;
       }
 
       public void Write(IEnumerable<IRow> rows) {
 
-         var writer = new StreamWriter(_stream);
-         var csv = new CsvWriter(writer, Config);
+         var csv = new CsvWriter(_streamWriter, Config);
 
          try {
             if (_context.Connection.Header == Constants.DefaultSetting) {

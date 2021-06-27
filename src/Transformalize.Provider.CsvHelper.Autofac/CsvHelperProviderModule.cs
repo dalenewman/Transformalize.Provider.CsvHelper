@@ -10,20 +10,22 @@ using Transformalize.Providers.File;
 
 namespace Transformalize.Providers.CsvHelper.Autofac {
    public class CsvHelperProviderModule : Module {
-      private readonly Stream _stream;
+
+      private readonly StreamWriter _streamWriter;
       private readonly Process _process;
 
       public CsvHelperProviderModule() {
       }
 
-      public CsvHelperProviderModule(Stream stream = null) {
-         _stream = stream;
+      public CsvHelperProviderModule(StreamWriter streamWriter) {
+         _streamWriter = streamWriter;
       }
 
-      public CsvHelperProviderModule(Process process, Stream stream = null) {
+      public CsvHelperProviderModule(Process process, StreamWriter streamWriter) {
          _process = process;
-         _stream = stream;
+         _streamWriter = streamWriter;
       }
+
       protected override void Load(ContainerBuilder builder) {
 
          if (_process == null && !builder.Properties.ContainsKey("Process")) {
@@ -111,14 +113,18 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
                            output.Error("A delimiter is required for a file output.");
                            return new NullWriter(output, true);
                         } else {
-                           if (output.Connection.Stream &&  _stream != null) {
-                              return output.Connection.Synchronous ? (IWrite) new CsvHelperStreamWriterSync(output, _stream) : new CsvHelperStreamWriter(output, _stream);
+                           if (output.Connection.Stream && _streamWriter != null) {
+                              if (output.Connection.Synchronous) {
+                                 return new CsvHelperStreamWriterSync(output, _streamWriter);
+                              } else {
+                                 return new CsvHelperStreamWriter(output, _streamWriter);
+                              }
                            } else {
                               var fileInfo = new FileInfo(Path.Combine(output.Connection.Folder, output.Connection.File ?? output.Entity.OutputTableName(output.Process.Name)));
-                              var stream = System.IO.File.OpenWrite(fileInfo.FullName);
-                              return output.Connection.Synchronous ? (IWrite)new CsvHelperStreamWriterSync(output, stream) : new CsvHelperStreamWriter(output, stream);
+                              var streamWriter = new StreamWriter(System.IO.File.OpenWrite(fileInfo.FullName));
+                              return output.Connection.Synchronous ? (IWrite)new CsvHelperStreamWriterSync(output, streamWriter) : new CsvHelperStreamWriter(output, streamWriter);
                            }
-                           
+
                         }
                      default:
                         return new NullWriter(output, true);

@@ -5,7 +5,7 @@
     <PackageOutputPath>c:\temp\modules</PackageOutputPath>
     <IncludeSymbols>true</IncludeSymbols>
     <Title>Transformalize File Provider using CsvHelper Autofac Module</Title>
-    <Version>0.8.34-beta</Version>
+    <Version>0.8.36-beta</Version>
     <Authors>Dale Newman</Authors>
     <Company>Transformalize</Company>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
