@@ -55,6 +55,10 @@ namespace Transformalize.Providers.CsvHelper {
             Encoding = Encoding.GetEncoding(_context.Connection.Encoding)
          };
 
+         if (_context.Connection.ErrorMode.Equals("IgnoreAndContinue", System.StringComparison.OrdinalIgnoreCase)) {
+            configuration.BadDataFound = null;  // skip the record
+         }
+
          if (_context.Connection.TextQualifier != string.Empty) {
             configuration.Escape = _context.Connection.TextQualifier[0];
             configuration.Quote = _context.Connection.TextQualifier[0];
@@ -64,7 +68,7 @@ namespace Transformalize.Providers.CsvHelper {
 
             while (csv.Read()) {
 
-               if(csv.Parser.RawRow <= ignoreFirstLines) {
+               if (csv.Parser.RawRow <= ignoreFirstLines) {
                   continue;
                }
 

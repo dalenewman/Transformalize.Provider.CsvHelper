@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Provider.CsvHelper</id>
-    <version>0.8.36-beta</version>
+    <version>0.8.37-beta</version>
     <title>Transformalize Provider using CsvHelper</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>
@@ -11,11 +11,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Transformalize Provider using CsvHelper</description>
     <releaseNotes>added the ability to make it write synchronously</releaseNotes>
-    <copyright>Copyright 2018-2020</copyright>
+    <copyright>Copyright 2018-2022</copyright>
     <tags>etl</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
-        <dependency id="CsvHelper" version="27.1.0" />
+        <dependency id="CsvHelper" version="27.2.1" />
         <dependency id="Transformalize.Provider.File" version="0.8.30-beta" />
       </group>
     </dependencies>

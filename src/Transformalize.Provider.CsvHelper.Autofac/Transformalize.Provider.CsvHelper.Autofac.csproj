@@ -4,13 +4,13 @@
     <RootNamespace>Transformalize.Providers.CsvHelper.Autofac</RootNamespace>
     <PackageOutputPath>c:\temp\modules</PackageOutputPath>
     <Title>Transformalize File Provider using CsvHelper Autofac Module</Title>
-    <Version>0.8.36-beta</Version>
+    <Version>0.8.37-beta</Version>
     <Authors>Dale Newman</Authors>
     <Company>Transformalize</Company>
     <IncludeSymbols>true</IncludeSymbols>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>An Autofac module for Transformalize.Providers.CsvHelper.</Description>
-    <Copyright>Copyright © 2020 Dale Newman</Copyright>
+    <Copyright>Copyright © 2018-2022 Dale Newman</Copyright>
     <PackageProjectUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dalenewman/Transformalize.Provider.CsvHelper.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -18,7 +18,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.35-beta" />
+    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.41-beta" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Transformalize.Provider.CsvHelper\Transformalize.Provider.CsvHelper.csproj" />

@@ -1,4 +1,5 @@
 using Autofac;
+using CsvHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Transformalize.Configuration;
@@ -33,7 +34,7 @@ namespace Test.Integration.Core {
   </parameters>
   <connections>
     <add name='input' provider='bogus' seed='1' />
-    <add name='output' provider='file' delimiter=',' file='c:\temp\bogus.csv' synchronous='true' />
+    <add name='output' provider='file' delimiter=',' file='files\bogus.csv' synchronous='true' />
   </connections>
   <entities>
     <add name='Contact' size='@[Size]'>
@@ -65,7 +66,7 @@ namespace Test.Integration.Core {
          const string xml = @"<add name='file' mode='init' read-only='true'>
   <connections>
     <add name='input' provider='internal' />
-    <add name='output' provider='file' delimiter=',' file='c:\temp\data-with-line-breaks-and-commas.csv' text-qualifier='""' />
+    <add name='output' provider='file' delimiter=',' file='files\data-with-line-breaks-and-commas.csv' text-qualifier='""' />
   </connections>
   <entities>
     <add name='Contact'>
@@ -99,7 +100,7 @@ namespace Test.Integration.Core {
 
          const string xml = @"<add name='file' mode='init' read-only='true'>
   <connections>
-    <add name='input' provider='file' delimiter=',' file='c:\temp\bogus.csv' />
+    <add name='input' provider='file' delimiter=',' file='files\bogus.csv' />
   </connections>
   <entities>
     <add name='Contact' page='1' size='20'>
@@ -121,6 +122,65 @@ namespace Test.Integration.Core {
                var controller = inner.Resolve<IProcessController>();
                controller.Execute();
                Assert.AreEqual(20, process.Entities.First().Hits);
+            }
+         }
+
+      }
+
+      [TestMethod, ExpectedException(typeof(BadDataException))]
+      public void ThrowOnBadData() {
+
+         const string xml = @"<add name='file' mode='init' read-only='true'>
+  <connections>
+    <add name='input' provider='file' delimiter=',' file='files\bad-data.csv' />
+  </connections>
+  <entities>
+    <add name='BadData'>
+      <fields>
+        <add name='field1' />
+        <add name='field2' />
+        <add name='field3' />
+      </fields>
+    </add>
+  </entities>
+</add>";
+
+         var logger = new ConsoleLogger(LogLevel.Debug);
+         using (var outer = new ConfigurationContainer().CreateScope(xml, logger)) {
+            var process = outer.Resolve<Process>();
+            using (var inner = new Container(new BogusModule(), new CsvHelperProviderModule()).CreateScope(process, logger)) {
+               var controller = inner.Resolve<IProcessController>();
+               controller.Execute();
+            }
+         }
+
+      }
+
+      [TestMethod]
+      public void IgnoreBadData() {
+
+         const string xml = @"<add name='file' mode='init' read-only='true'>
+  <connections>
+    <add name='input' provider='file' delimiter=',' file='files\bad-data.csv' error-mode='IgnoreAndContinue' />
+  </connections>
+  <entities>
+    <add name='BadData'>
+      <fields>
+        <add name='field1' />
+        <add name='field2' />
+        <add name='field3' />
+      </fields>
+    </add>
+  </entities>
+</add>";
+
+         var logger = new ConsoleLogger(LogLevel.Debug);
+         using (var outer = new ConfigurationContainer().CreateScope(xml, logger)) {
+            var process = outer.Resolve<Process>();
+            using (var inner = new Container(new BogusModule(), new CsvHelperProviderModule()).CreateScope(process, logger)) {
+               var controller = inner.Resolve<IProcessController>();
+               var rows = controller.Read();
+               Assert.AreEqual(3, rows.Count());
             }
          }
 

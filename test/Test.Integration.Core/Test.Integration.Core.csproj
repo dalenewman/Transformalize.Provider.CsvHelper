@@ -1,11 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
+    <Version>0.8.37</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
@@ -14,13 +12,22 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.35-beta" />
+    <PackageReference Include="Transformalize.Container.Autofac" Version="0.8.41-beta" />
     <PackageReference Include="Transformalize.Provider.Bogus.Autofac" Version="0.8.29-beta" />
     <PackageReference Include="Transformalize.Provider.Console.Autofac" Version="0.8.29-beta" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\src\Transformalize.Provider.CsvHelper.Autofac\Transformalize.Provider.CsvHelper.Autofac.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Update="files\bad-data.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="files\bogus.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="files\data-with-line-breaks-and-commas.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
