@@ -5,7 +5,7 @@
     <PackageOutputPath>c:\temp\modules</PackageOutputPath>
     <IncludeSymbols>true</IncludeSymbols>
     <Title>Transformalize File Provider using CsvHelper Autofac Module</Title>
-    <Version>0.8.37-beta</Version>
+    <Version>0.10.0-beta</Version>
     <Authors>Dale Newman</Authors>
     <Company>Transformalize</Company>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -16,9 +16,11 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>etl,csvhelper,transformalize,csv</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <FileVersion>0.10.0</FileVersion>
+    <AssemblyVersion>0.10.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="27.2.1" />
-    <PackageReference Include="Transformalize.Provider.File" Version="0.8.30-beta" />
+    <PackageReference Include="Transformalize.Provider.File" Version="0.10.0-beta" />
   </ItemGroup>
 </Project>
