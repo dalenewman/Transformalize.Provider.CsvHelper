@@ -18,7 +18,7 @@ namespace Transformalize.Providers.CsvHelper {
          Config = new CsvConfiguration(System.Globalization.CultureInfo.CurrentCulture) {
             Delimiter = string.IsNullOrEmpty(_context.Connection.Delimiter) ? "," : _context.Connection.Delimiter,
             IgnoreBlankLines = true,
-            SanitizeForInjection = false
+            NewLine = Environment.NewLine
          };
 
          if (!string.IsNullOrEmpty(_context.Connection.TextQualifier)) {
