@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Provider.CsvHelper.Autofac</id>
-    <version>0.10.1-beta</version>
+    <version>0.10.2-beta</version>
     <title>Transformalize Provider using CsvHelper Autofac Module</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>
@@ -10,13 +10,13 @@
     <license type="expression">Apache-2.0</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Transformalize Provider using CsvHelper Autofac Module</description>
-    <releaseNotes>update dependencies</releaseNotes>
+    <releaseNotes>overwrite file if it exists</releaseNotes>
     <copyright>Copyright © 2018-2023</copyright>
     <tags>etl</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
         <dependency id="Transformalize.Container.Autofac" version="0.10.12-beta" />
-        <dependency id="Transformalize.Provider.CsvHelper" version="0.10.1-beta" />
+        <dependency id="Transformalize.Provider.CsvHelper" version="0.10.2-beta" />
       </group>
     </dependencies>
   </metadata>

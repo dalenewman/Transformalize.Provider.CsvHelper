@@ -16,25 +16,18 @@ namespace Test.Integration.Core {
 
 
       /// <summary>
-      /// Not sure what's happening but I have some odd output:
-      /// 
-      /// 40,Fannie,Smith,5,459
-      /// 41,Gerard,Rogahn,2,33742,Dana,Robel,4,206  -- double line
-      /// 43,Alicia,Kunde,2,400
-      /// 44,Christine,Hansen,5,356
-      ///                                            -- empty line
-      /// 45,Marianne,Walker,3,397
+      /// Presently the provider only works reliably when synchronous is true.
       /// </summary>
       [TestMethod]
       public void Write() {
 
-         const string xml = @"<add name='file' mode='init' read-only='true'>
+         const string writeXml = @"<add name='file' read-only='true'>
   <parameters>
     <add name='Size' type='int' value='1000' />
   </parameters>
   <connections>
     <add name='input' provider='bogus' seed='1' />
-    <add name='output' provider='file' delimiter=',' file='files\bogus.csv' synchronous='true' />
+    <add name='output' provider='file' delimiter=',' file='files\bogus-test.csv' synchronous='true' />
   </connections>
   <entities>
     <add name='Contact' size='@[Size]'>
@@ -50,14 +43,41 @@ namespace Test.Integration.Core {
 </add>";
 
          var logger = new ConsoleLogger(LogLevel.Debug);
-         using (var outer = new ConfigurationContainer().CreateScope(xml, logger)) {
+         using (var outer = new ConfigurationContainer().CreateScope(writeXml, logger)) {
             var process = outer.Resolve<Process>();
             using (var inner = new Container(new BogusModule(), new CsvHelperProviderModule()).CreateScope(process, logger)) {
                var controller = inner.Resolve<IProcessController>();
                controller.Execute();
-               Assert.AreEqual((uint)1000, process.Entities.First().Inserts);
+               Assert.AreEqual((uint)1000, process.Entities.First().Inserts, "wrote 1000 rows to bogus-test.csv");
             }
          }
+
+         const string readXml = @"<add name='file' read-only='true'>
+  <connections>
+    <add name='input' provider='file' delimiter=',' file='files\bogus-test.csv' synchronous='true' />
+  </connections>
+  <entities>
+    <add name='Contact'>
+      <fields>
+        <add name='Identity' type='int' />
+        <add name='FirstName' />
+        <add name='LastName' />
+        <add name='Stars' type='byte' />
+        <add name='Reviewers' type='int' />
+      </fields>
+    </add>
+  </entities>
+</add>";
+
+         using (var outer = new ConfigurationContainer().CreateScope(readXml, logger)) {
+            var process = outer.Resolve<Process>();
+            using (var inner = new Container(new CsvHelperProviderModule()).CreateScope(process, logger)) {
+               var controller = inner.Resolve<IProcessController>();
+               controller.Execute();
+               Assert.AreEqual(1000, process.Entities.First().Hits, "read 1000 rows from bogus-test.csv");
+            }
+         }
+
 
       }
 
@@ -66,7 +86,7 @@ namespace Test.Integration.Core {
          const string xml = @"<add name='file' mode='init' read-only='true'>
   <connections>
     <add name='input' provider='internal' />
-    <add name='output' provider='file' delimiter=',' file='files\data-with-line-breaks-and-commas.csv' text-qualifier='""' />
+    <add name='output' provider='file' delimiter=',' file='files\data-with-line-breaks-and-commas-test.csv' text-qualifier='""' />
   </connections>
   <entities>
     <add name='Contact'>
@@ -98,7 +118,7 @@ namespace Test.Integration.Core {
       [TestMethod]
       public void Read() {
 
-         const string xml = @"<add name='file' mode='init' read-only='true'>
+         const string xml = @"<add name='file' read-only='true'>
   <connections>
     <add name='input' provider='file' delimiter=',' file='files\bogus.csv' />
   </connections>
@@ -120,8 +140,14 @@ namespace Test.Integration.Core {
             var process = outer.Resolve<Process>();
             using (var inner = new Container(new BogusModule(), new CsvHelperProviderModule()).CreateScope(process, logger)) {
                var controller = inner.Resolve<IProcessController>();
-               controller.Execute();
-               Assert.AreEqual(20, process.Entities.First().Hits);
+               var rows = controller.Read().ToArray();
+               Assert.AreEqual(20, rows.Length);
+               var row = rows[3].ToFriendlyDictionary(process.Entities[0].Fields.ToArray());
+               Assert.AreEqual(row["Identity"].ToString(), "4");
+               Assert.AreEqual(row["FirstName"].ToString(), "Caleb");
+               Assert.AreEqual(row["LastName"].ToString(), "Hane");
+               Assert.AreEqual(row["Stars"].ToString(), "4");
+               Assert.AreEqual(row["Reviewers"].ToString(), "78");
             }
          }
 

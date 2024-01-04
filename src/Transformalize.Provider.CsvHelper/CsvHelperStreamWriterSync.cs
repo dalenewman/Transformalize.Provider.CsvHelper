@@ -33,10 +33,8 @@ namespace Transformalize.Providers.CsvHelper {
             }
 
          } finally {
-            if (csv != null) {
-               csv.Flush();
-               csv.Dispose();
-            }
+            csv?.Flush();
+            csv?.Dispose();
          }
       }
    }

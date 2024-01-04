@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using System;
 using System.IO;
 using System.Linq;
 using Transformalize.Configuration;
@@ -121,6 +122,13 @@ namespace Transformalize.Providers.CsvHelper.Autofac {
                               }
                            } else {
                               var fileInfo = new FileInfo(Path.Combine(output.Connection.Folder, output.Connection.File ?? output.Entity.OutputTableName(output.Process.Name)));
+                              if (fileInfo.Exists) {
+                                 try { 
+                                    fileInfo.Delete(); 
+                                 } catch(Exception ex) {
+                                    output.Error(ex.Message);
+                                 }
+                              }
                               var streamWriter = new StreamWriter(System.IO.File.OpenWrite(fileInfo.FullName));
                               return output.Connection.Synchronous ? (IWrite)new CsvHelperStreamWriterSync(output, streamWriter) : new CsvHelperStreamWriter(output, streamWriter);
                            }

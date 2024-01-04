@@ -38,9 +38,7 @@ namespace Transformalize.Providers.CsvHelper {
       }
 
       public void Dispose() {
-         if(_csv != null) {
-            _csv.Dispose();
-         }
+         _csv?.Dispose();
       }
    }
 }
