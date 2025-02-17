@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Transformalize.Provider.CsvHelper</id>
-    <version>0.10.2-beta</version>
+    <version>0.11.1-beta</version>
     <title>Transformalize Provider using CsvHelper</title>
     <authors>Dale Newman</authors>
     <owners>Dale Newman</owners>
@@ -10,13 +10,13 @@
     <license type="expression">Apache-2.0</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Transformalize Provider using CsvHelper</description>
-    <releaseNotes>overwrite file if it exists</releaseNotes>
-    <copyright>Copyright © 2018-2023</copyright>
+    <releaseNotes>maintenance</releaseNotes>
+    <copyright>Copyright © 2018-2025</copyright>
     <tags>etl</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
-        <dependency id="CsvHelper" version="30.0.1" />
-        <dependency id="Transformalize.Provider.File" version="0.10.5-beta" />
+        <dependency id="CsvHelper" version="33.0.1" />
+        <dependency id="Transformalize.Provider.File" version="0.11.1-beta" />
       </group>
     </dependencies>
   </metadata>
